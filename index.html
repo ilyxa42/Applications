@@ -2,7 +2,8 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta name="theme-color" content="#2C8985">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#3F8F87">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Гармония IT">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -22,20 +23,6 @@
   --shadow-lg:0 34px 80px -34px rgba(28,70,80,.5);
   box-sizing:border-box;
   padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
-}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#0D1618; --bg2:#091012; --surface:#142125; --surface2:#1B2B2F;
-  --ink:#E3F0F0; --muted:#9BB2B5; --faint:#6A8286; --line:#24373A;
-  --accent:#4DBDB5; --accent-ink:#05201E; --accent-soft:#17383A;
-  --green:#58C585; --green-soft:#163323; --red:#FF6F77;
-  --shadow:0 1px 2px rgba(0,0,0,.3),0 16px 36px -18px rgba(0,0,0,.75);
-  --shadow-lg:0 34px 80px -30px rgba(0,0,0,.85);
-}}
-:root[data-theme="dark"]{
-  --bg:#0D1618; --bg2:#091012; --surface:#142125; --surface2:#1B2B2F;
-  --ink:#E3F0F0; --muted:#9BB2B5; --faint:#6A8286; --line:#24373A;
-  --accent:#4DBDB5; --accent-ink:#05201E; --accent-soft:#17383A;
-  --green:#58C585; --green-soft:#163323; --red:#FF6F77;
 }
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *,*::before,*::after{box-sizing:border-box}
@@ -510,6 +497,99 @@ body.rep-open{overflow:hidden}
   .city{padding:18px 14px}
   .city b{font-size:15.5px}
 }
+
+/* ===== help & tips v5 ===== */
+.tips-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.tips-h span{font-size:11.5px;font-weight:700;color:var(--accent);background:var(--surface);border-radius:999px;padding:2px 9px}
+.tips ol,.hcard ol{margin:0 0 10px;padding-left:20px;color:var(--ink);line-height:1.5}
+.tips li,.hcard li{margin:5px 0}
+.tips li b,.hcard li b{font-weight:700;color:var(--accent)}
+.tips-note{margin:0 0 10px;font-size:13.5px;color:var(--muted);padding:8px 12px;border-radius:12px;background:var(--surface)}
+.help{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:start}
+.hcard{background:var(--surface);border-radius:var(--r-md);box-shadow:var(--shadow);padding:0 20px;font-size:14.5px}
+.hcard summary{list-style:none;display:flex;align-items:center;gap:12px;padding:18px 0;cursor:pointer;font-weight:700;font-size:16px}
+.hcard summary::-webkit-details-marker{display:none}
+.hcard summary svg{width:24px;height:24px;color:var(--accent);flex:none}
+.hcard summary span{flex:1}
+.hcard summary::after{content:"";width:9px;height:9px;border-right:2.4px solid var(--faint);border-bottom:2.4px solid var(--faint);transform:rotate(45deg);transition:transform .2s;margin-right:4px}
+.hcard[open] summary::after{transform:rotate(-135deg)}
+.hcard[open]{padding-bottom:18px}
+.hcard[open] summary{border-bottom:1px solid var(--line);margin-bottom:12px}
+.cats{grid-template-columns:repeat(4,1fr)}
+@media (max-width:760px){.help{grid-template-columns:1fr}}
+@media (max-width:640px){.cats{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:430px){.brand b{display:none}.nav button{padding:8px 10px}}
+
+.tips b{margin:0}
+.tips li b,.hcard li b{display:inline;margin:0}
+.tips summary{list-style:none;cursor:pointer}
+.tips summary::-webkit-details-marker{display:none}
+.tips summary b::after{content:"";display:inline-block;width:7px;height:7px;margin-left:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translateY(-3px);transition:transform .2s}
+.tips details[open] summary b::after{transform:rotate(-135deg) translateY(-1px)}
+.tips details[open] summary{margin-bottom:8px}
+.tips-h{margin-bottom:0!important}
+
+.tips kbd,.hcard kbd,.tips code,.hcard code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.88em;padding:1px 6px;border-radius:6px;background:var(--surface);border:1px solid var(--line);box-shadow:0 1px 0 var(--line);white-space:nowrap}
+.hcard kbd,.hcard code{background:var(--surface2)}
+
+/* ===== compact category tiles v6 ===== */
+.cats{grid-template-columns:repeat(3,1fr)!important;gap:8px!important}
+.cat span{flex-direction:row!important;align-items:center;gap:10px!important;padding:12px 14px!important;min-height:58px;font-size:13.5px!important;line-height:1.2}
+.cat span svg{width:22px!important;height:22px!important;flex:none}
+@media (max-width:640px){.cats{grid-template-columns:repeat(2,1fr)!important}.cat span{padding:11px 12px!important;min-height:54px;font-size:13px!important;gap:9px!important}}
+/* ===== Гармония palette v7 (only brand colors) ===== */
+:root{
+  --bg:#F4F9F7; --bg2:#E4EFEC; --surface:#FFFFFF; --surface2:#F0F7F4;
+  --ink:#2B6570; --muted:#5F8A8C; --faint:#98B6B4; --line:#DCEAE6;
+  --accent:#3F8F87; --accent-ink:#FFFFFF; --accent-soft:#E1F1EC;
+  --amber:#E8C57A; --amber-ink:#5B4312; --red:#D0795C; --green:#58A889; --green-soft:#E4F3EB;
+  --brand:linear-gradient(135deg,#5BAA93 0%,#3F8F87 45%,#2B6570 100%);
+  --gold:linear-gradient(135deg,#FCF6BA 0%,#EECD86 100%);
+  --shadow:0 1px 2px rgba(43,101,112,.06),0 14px 34px -18px rgba(43,101,112,.28);
+  --shadow-lg:0 34px 80px -34px rgba(43,101,112,.45);
+}
+html{background:#F4F9F7!important}
+body{background:#F4F9F7!important;min-height:100vh;position:relative}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:
+  radial-gradient(900px 520px at -8% -6%,rgba(252,246,186,.55),transparent 62%),
+  radial-gradient(800px 520px at 108% -4%,rgba(182,214,213,.55),transparent 60%),
+  radial-gradient(700px 500px at 50% 108%,rgba(188,215,180,.30),transparent 65%)}
+.top{background:rgba(244,249,247,.9)!important}
+.nav button[aria-current="true"],.city[aria-pressed="true"],.bchips button[aria-pressed="true"],.seg button[aria-pressed="true"],#period button[aria-pressed="true"]{background:var(--brand)!important;color:#fff!important;box-shadow:0 8px 18px -10px rgba(43,101,112,.55)}
+.city[aria-pressed="true"]::after{background:#FCF6BA!important;box-shadow:0 0 0 3px rgba(252,246,186,.35)}
+.btn{background:var(--brand);color:#fff}
+.btn.acc{background:var(--brand)!important;box-shadow:0 12px 26px -14px rgba(43,101,112,.7),inset 0 1px 0 rgba(255,255,255,.25)!important}
+.btn.ok{background:linear-gradient(135deg,#7BBE9F,#58A889)!important}
+.btn.soft{background:var(--surface2);color:var(--ink)}
+.cat input:checked+span{background:var(--brand)!important;color:#fff!important}
+.prio input:checked+span{border-color:var(--accent)!important;background:var(--accent-soft)!important}
+.visor{background:var(--brand)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 0 0 5px var(--accent-soft)!important}
+.visor .num{color:#fff!important;text-shadow:0 0 14px rgba(252,246,186,.55)!important}
+.visor .num.ph{color:rgba(255,255,255,.6)!important}
+.stub-strip{background:var(--gold)!important}
+.stub[data-p="0"] .stub-strip{background:var(--brand)!important}
+.stub[data-p="1"] .stub-strip{background:var(--gold)!important}
+.stub[data-p="2"] .stub-strip{background:linear-gradient(90deg,#E9A27F,#D0795C)!important}
+.bars i{background:var(--ink)}
+.toast{background:var(--brand)!important;color:#fff!important}
+.scrim{background:rgba(43,101,112,.28)!important;backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
+.lightbox{background:rgba(43,101,112,.92)!important}
+.phx button{background:rgba(43,101,112,.8)!important}
+.say{background:#fff;border:1px solid var(--line)}
+.stepper .cur .dot,.stepper .past .dot{background:var(--brand)!important}
+.stepper button.past::before,.stepper button.cur::before{background:linear-gradient(90deg,#5BAA93,#3F8F87)!important}
+.badge{background:var(--gold)!important;color:var(--amber-ink)!important}
+.tips{background:linear-gradient(135deg,rgba(252,246,186,.45),rgba(225,241,236,.9))!important}
+.mcard .res,.card[style*="green-soft"]{background:var(--green-soft)!important}
+.kpi[aria-pressed="true"]{box-shadow:inset 0 0 0 2px var(--accent),var(--shadow)!important}
+.hcard summary svg,.tips li b,.hcard li b{color:var(--accent)}
+.rep-page{color:#2B6570}
+h1{color:var(--ink)}
+.tips-h{gap:10px}
+.tips-h b{white-space:nowrap}
+.tips-h span{white-space:nowrap;flex:none}
+
+:root{color-scheme:light}
 </style>
 </head>
 <body>
@@ -520,6 +600,7 @@ body.rep-open{overflow:hidden}
   <nav class="nav" aria-label="Разделы">
     <button data-go="new" aria-current="true">Новая<span class="lbl-long">&nbsp;заявка</span></button>
     <button data-go="mine">Мои<span class="lbl-long">&nbsp;заявки</span></button>
+    <button data-go="help">Помощь</button>
     <button data-go="desk" id="navDesk" hidden>Пульт <span class="badge" id="deskBadge" hidden></span></button>
   </nav>
 </div></div>
@@ -623,6 +704,15 @@ body.rep-open{overflow:hidden}
   </div>
 </section>
 
+<!-- HELP -->
+<section id="v-help" hidden>
+  <div class="page">
+    <div class="page-h"><div><h1>Помощь</h1><p>Что можно сделать самому на РЕД ОС, пока я еду</p></div>
+      <button class="btn soft sm" data-go="new" type="button">Новая заявка</button></div>
+    <div class="help" id="helpList"></div>
+  </div>
+</section>
+
 <!-- LOGIN -->
 <section id="v-login" hidden>
   <form class="login" id="loginForm" novalidate>
@@ -703,18 +793,118 @@ const IC = {
   key:'<circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3"/>',
   mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>',
   phone:'<path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/>',
+  doc:'<path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/>',
+  lock:'<rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/>',
+  upd:'<path d="M20 12a8 8 0 1 1-2.3-5.6M20 4v5h-5"/>',
+  vpn:'<path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/>',
+  office:'<path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13l2 4 2-4 2 4 2-4"/>',
+  web:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>',
+  folder:'<path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>',
+  usb:'<rect x="7" y="9" width="10" height="12" rx="2"/><path d="M9 9V3h6v6M10 5h1M13 5h1"/>',
+  mouse:'<rect x="6" y="3" width="12" height="18" rx="6"/><path d="M12 7v4"/>',
+  sound:'<path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/>',
+  install:'<path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/>',
+  user:'<circle cx="10" cy="8" r="4"/><path d="M3 21a7 7 0 0 1 14 0M19 8v6M16 11h6"/>',
   other:'<circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/>'
 };
-const CATS = [["Компьютер","pc"],["Принтер, сканер","print"],["Интернет, сеть","net"],["1С, программы","app"],["Пароль, доступ, ЭЦП","key"],["Почта","mail"],["Телефония","phone"],["Другое","other"]];
+const CATS = [["Компьютер","pc"],["Принтер, сканер","print"],["Интернет, сеть","net"],["ViPNet","vpn"],["РСЭД «Тезис»","doc"],["Пароль ЕПД, домен","lock"],["ЭЦП, токен","key"],["Документы, таблицы","office"],["1С, программы","app"],["Почта","mail"],["Браузер, сайты","web"],["Сетевые папки","folder"],["Флешка, USB","usb"],["Монитор, мышь, клавиатура","mouse"],["Звук, камера, микрофон","sound"],["Установка программы","install"],["Обновление РЕД ОС","upd"],["Новый сотрудник, доступы","user"],["Телефония","phone"],["Другое","other"]];
 const TIPS = {
-  "Компьютер":["Перезагрузите компьютер: Пуск, Завершение работы, Перезагрузка","Проверьте, что кабели питания и монитора плотно вставлены"],
-  "Принтер, сканер":["Выключите принтер на 30 секунд и включите снова","Проверьте бумагу и нет ли застрявшего листа","Откройте и закройте крышку картриджа"],
-  "Интернет, сеть":["Перезагрузите компьютер","Проверьте, что сетевой кабель вставлен и индикатор горит","Спросите коллег: если сети нет у всех, напишите это в описании"],
-  "1С, программы":["Закройте программу полностью и откройте заново","Сфотографируйте текст ошибки и приложите фото"],
-  "Пароль, доступ, ЭЦП":["Проверьте раскладку клавиатуры и Caps Lock","Для ЭЦП убедитесь, что токен вставлен в USB"],
-  "Почта":["Проверьте, открываются ли сайты в браузере","Закройте и заново откройте почтовую программу"],
-  "Телефония":["Проверьте, что трубка лежит плотно и кабель подключён","Отключите телефон от питания на 10 секунд"],
-  "Другое":[]
+  "Компьютер":{steps:[
+    "Сохраните документы и перезагрузите компьютер: «Главное меню → Завершить работу → Перезагрузить».",
+    "Если зависла одна программа, закройте её крестиком и подождите 10–20 секунд. Если не закрывается, перезагрузите компьютер.",
+    "Проверьте, что кабели питания и монитора плотно вставлены, а монитор включён кнопкой.",
+    "Если компьютер не загружается после обновления: при включении в меню загрузки выберите стрелками вторую строку и нажмите Enter. Затем оставьте заявку."]},
+  "Принтер, сканер":{steps:[
+    "Проверьте принтер: включён, есть бумага, нет застрявшего листа, на панели нет ошибки.",
+    "Откройте «Главное меню → Администрирование → Настройки принтера».",
+    "Нажмите правой кнопкой по своему принтеру и посмотрите галочку «Активен». Она часто слетает сама: если снята, поставьте её.",
+    "Там же правой кнопкой → «Установить по умолчанию», чтобы печать шла на этот принтер.",
+    "Если задания застряли: дважды щёлкните по принтеру, выделите задания в очереди и нажмите «Отменить». Потом отправьте печать снова.",
+    "Выключите принтер на 30 секунд и включите.",
+    "Сканер: переподключите USB-кабель, закройте программу сканирования и откройте заново."],
+    note:"Если принтер пропал из списка или окно просит пароль администратора, оставьте заявку."},
+  "Интернет, сеть":{steps:[
+    "Посмотрите на значок сети в правом нижнем углу. Если на нём крестик, проверьте, что сетевой кабель вставлен в компьютер и в розетку, а на разъёме мигает индикатор.",
+    "Нажмите на значок сети, отключите «Проводное соединение» и включите снова.",
+    "Перезагрузите компьютер.",
+    "Спросите коллег: если сети нет у всех в кабинете, напишите это в описании."]},
+  "ViPNet":{steps:[
+    "Посмотрите на значок ViPNet в правом нижнем углу. Если его нет, запустите «ViPNet Client» из главного меню.",
+    "Проверьте, что работает обычный интернет: открываются ли сайты в браузере.",
+    "Закройте ViPNet Client и запустите снова, если не помогло, перезагрузите компьютер.",
+    "Если ViPNet просит пароль, а вы его не знаете, не подбирайте: оставьте заявку.",
+    "Если появилось сообщение об истечении срока ключей или сертификата, сфотографируйте его и приложите к заявке."]},
+  "РСЭД «Тезис»":{steps:[
+    "Обновите страницу сочетанием Ctrl+F5, выйдите из «Тезиса» и войдите снова.",
+    "Очистите кэш браузера: Ctrl+Shift+Delete → «Изображения и файлы в кэше» → «Удалить».",
+    "Попробуйте открыть «Тезис» в другом браузере, который установлен на компьютере.",
+    "Если «Тезис» не открывается совсем, проверьте, что ViPNet запущен.",
+    "Если не подписывается документ: проверьте, что токен ЭЦП вставлен и на нём горит индикатор, затем перезапустите браузер.",
+    "Сделайте снимок экрана с ошибкой клавишей PrtSc и приложите к заявке."],
+    note:"Если «Тезис» не открывается у всех, это может быть сбой на стороне региона. Заявку всё равно оставьте."},
+  "Пароль ЕПД, домен":{steps:[
+    "Проверьте раскладку клавиатуры и Caps Lock: пароль обычно вводится на английской раскладке.",
+    "Сменить пароль ЕПД можно самостоятельно на сайте id.yanao.ru.",
+    "Если не получается или забыли пароль, оставьте заявку: смену пароля сделает системный администратор.",
+    "После смены войдите с новым паролем. Если почта или «Тезис» попросят пароль, введите новый.",
+    "Если учётная запись заблокирована после неверных попыток, не пробуйте дальше: оставьте заявку."]},
+  "ЭЦП, токен":{steps:[
+    "Проверьте, что токен вставлен и на нём горит индикатор. Попробуйте другой USB-порт.",
+    "После того как вставили токен, закройте браузер и откройте заново.",
+    "Проверьте срок сертификата: «Главное меню → Инструменты КриптоПро» → «Сертификаты». Если срок истёк, оставьте заявку."]},
+  "Документы, таблицы":{steps:[
+    "Если документ не открывается, нажмите по файлу правой кнопкой → «Открыть с помощью» и выберите другой редактор.",
+    "Если документ из Word выглядит криво, сохраните его в формате .docx и откройте заново.",
+    "Не сохраняется файл: проверьте, что сохраняете в свою папку, а не на вынутую флешку или сетевую папку без доступа.",
+    "Если программа зависла, подождите минуту: часто она восстанавливает документ при следующем запуске."]},
+  "1С, программы":{steps:[
+    "Закройте программу полностью и откройте заново.",
+    "Если 1С работает в браузере, обновите страницу сочетанием Ctrl+F5.",
+    "Сфотографируйте или сделайте снимок экрана с текстом ошибки (клавиша PrtSc) и приложите к заявке."]},
+  "Почта":{steps:[
+    "Проверьте интернет: открываются ли сайты в браузере.",
+    "Закройте почтовую программу и откройте заново.",
+    "Если недавно меняли пароль ЕПД, почта может попросить новый пароль: введите его."]},
+  "Браузер, сайты":{steps:[
+    "Обновите страницу сочетанием Ctrl+F5.",
+    "Очистите кэш: Ctrl+Shift+Delete → «Изображения и файлы в кэше» → «Удалить».",
+    "Попробуйте открыть сайт в другом браузере.",
+    "Если сайт пишет про ошибку сертификата или небезопасное соединение, не нажимайте «Продолжить»: оставьте заявку с адресом сайта."]},
+  "Сетевые папки":{steps:[
+    "Перезагрузите компьютер: после смены пароля ЕПД доступ к папкам часто появляется только после нового входа.",
+    "Если папка просит логин и пароль, введите свои данные ЕПД.",
+    "В заявке укажите, какая папка не открывается и что пишет компьютер."]},
+  "Флешка, USB":{steps:[
+    "Подождите 10–15 секунд после подключения: флешка появится на рабочем столе или в «Файлах».",
+    "Попробуйте другой USB-порт, лучше сзади системного блока.",
+    "Извлекайте флешку правой кнопкой → «Безопасно извлечь», иначе файлы могут не сохраниться."],
+    note:"Некоторые флешки могут быть заблокированы по требованиям безопасности. Если нужна работа с флешкой, оставьте заявку."},
+  "Монитор, мышь, клавиатура":{steps:[
+    "Проверьте, что кабели плотно вставлены. USB-мышь и клавиатуру переподключите в другой порт.",
+    "Беспроводная мышь или клавиатура: замените батарейки и проверьте, что приёмник вставлен.",
+    "Монитор пишет «Нет сигнала»: проверьте кабель к системному блоку и нажмите на мониторе кнопку выбора источника."]},
+  "Звук, камера, микрофон":{steps:[
+    "Нажмите на значок громкости в правом нижнем углу и проверьте, что звук не выключен.",
+    "Проверьте, что наушники или колонки вставлены в нужный разъём и включены.",
+    "Для видеосвязи в браузере: нажмите на значок слева от адреса сайта и разрешите доступ к камере и микрофону.",
+    "Переподключите камеру или гарнитуру и обновите страницу."]},
+  "Установка программы":{steps:[
+    "Программы на РЕД ОС устанавливает только IT-отдел.",
+    "Не скачивайте программы из интернета: файлы .exe на РЕД ОС не работают.",
+    "В заявке укажите название программы и для чего она нужна."]},
+  "Обновление РЕД ОС":{steps:[
+    "Если появилось уведомление об обновлениях в правом нижнем углу и оно просит пароль администратора, не устанавливайте сами: оставьте заявку.",
+    "Во время обновления не выключайте компьютер и не закрывайте окно обновления, даже если оно долго висит.",
+    "Если после обновления компьютер не загружается: перезагрузите, в меню загрузки выберите стрелками вторую строку (предыдущая версия системы) и нажмите Enter.",
+    "Сфотографируйте сообщение на экране и приложите к заявке."]},
+  "Новый сотрудник, доступы":{title:"Что указать в заявке",steps:[
+    "ФИО нового сотрудника, должность, отделение и дату выхода.",
+    "Какие доступы нужны: учётная запись ЕПД, почта, «Тезис», 1С, сетевые папки, ЭЦП.",
+    "Если сотрудник уволился, укажите это: учётную запись и доступы нужно отключить."]},
+  "Телефония":{steps:[
+    "Проверьте, что трубка лежит плотно, а кабель подключён.",
+    "Отключите телефон от питания на 10 секунд и включите снова."]},
+  "Другое":{steps:[]}
 };
 const SAY = {1:"Привет! В каком вы филиале?",2:"Что случилось? Можно приложить фото",3:"Насколько срочно?",4:"Почти готово! Как с вами связаться?"};
 const PRIO = [{name:"Обычная",sla:24*60},{name:"Срочная",sla:4*60},{name:"Всё стоит",sla:60}];
@@ -844,10 +1034,11 @@ let view="new";
 function go(v){
   if(v==="desk"&&!S.admin){v=S.mode==="server"?"login":"new"}
   view=v;
-  ["new","done","mine","desk","login"].forEach(x=>$("#v-"+x).hidden = x!==v);
+  ["new","done","mine","desk","login","help"].forEach(x=>$("#v-"+x).hidden = x!==v);
   $$(".nav button").forEach(b=>b.setAttribute("aria-current", b.dataset.go===v || (v==="done"&&b.dataset.go==="new") || (v==="login"&&b.dataset.go==="desk")));
   if(v==="mine") renderMine(true);
   if(v==="desk") renderDesk();
+  if(v==="help") renderHelp();
   if(v==="login") setTimeout(()=>$("#pw").focus(),50);
   window.scrollTo({top:0});
 }
@@ -890,13 +1081,23 @@ function sync(){
 }
 
 /* tips */
+const fmtTip = t => esc(t).replace(/«([^»]+)»/g,"<b>«$1»</b>").replace(/(Ctrl\+Shift\+Delete|Ctrl\+F5|PrtSc|Enter|Caps Lock)/g,"<kbd>$1</kbd>").replace(/\bid\.yanao\.ru\b/g,'<a href="https://id.yanao.ru" target="_blank" rel="noopener">id.yanao.ru</a>');
 function renderTips(){
   const c=F.querySelector("input[name=cat]:checked"); const t=c?TIPS[c.value]:null;
   const box=$("#tips");
-  if(!t||!t.length){box.hidden=true;return}
+  if(!t||!t.steps.length){box.hidden=true;return}
   box.hidden=false;
-  box.innerHTML=`<b>Попробуйте сначала</b><ul>${t.map(x=>`<li>${esc(x)}</li>`).join("")}</ul><button type="button" class="btn soft sm" id="tipsOk">Помогло, заявка не нужна</button>`;
+  const open=!matchMedia("(max-width:640px)").matches;
+  box.innerHTML=`<details ${open?"open":""}><summary class="tips-h"><b>${t.title||"Попробуйте сначала"}</b><span>${t.steps.length} ${t.steps.length<5?"шага":"шагов"}</span></summary><ol>${t.steps.map(x=>`<li>${fmtTip(x)}</li>`).join("")}</ol>${t.note?`<p class="tips-note">${fmtTip(t.note)}</p>`:""}${t.title?"":`<button type="button" class="btn soft sm" id="tipsOk">Помогло, заявка не нужна</button>`}</details>`;
 }
+function renderHelp(){
+  $("#helpList").innerHTML=CATS.filter(([c])=>TIPS[c]&&TIPS[c].steps.length).map(([c,k])=>`<details class="hcard"><summary>${ico(k)}<span>${esc(c)}</span></summary>
+    <ol>${TIPS[c].steps.map(x=>`<li>${fmtTip(x)}</li>`).join("")}</ol>${TIPS[c].note?`<p class="tips-note">${fmtTip(TIPS[c].note)}</p>`:""}
+    <button type="button" class="btn acc sm" data-helpreq="${esc(c)}">Не помогло, оставить заявку</button></details>`).join("");
+}
+$("#helpList").addEventListener("click",e=>{const b=e.target.closest("[data-helpreq]");if(!b)return;
+  go("new");const c=F.querySelector(`input[name=cat][value="${CSS.escape(b.dataset.helpreq)}"]`);if(c){c.checked=true;renderTips();sync()}
+  goStep(draft.branch?2:1,1)});
 $("#cats").addEventListener("change",()=>{$("#e2").textContent="";renderTips();});
 $("#tips").addEventListener("click",e=>{if(e.target.id!=="tipsOk")return;resetForm();goStep(1,-1);toast("Отлично! Если снова понадобится помощь, пишите")});
 function resetForm(){F.desc.value="";const c=F.querySelector("input[name=cat]:checked");if(c)c.checked=false;F.prio.value="0";photos=[];renderPhotos();renderTips();sync()}
