@@ -1407,7 +1407,7 @@ renderPhotos(); sync(); goStep(1,1);
   if(S.admin) tpl=await Store.templates();
   if(S.mode!=="artifact"&&/^https?:$/.test(location.protocol)){
     const add=(rel,href,extra={})=>{const l=document.createElement("link");l.rel=rel;l.href=href;Object.assign(l,extra);document.head.appendChild(l)};
-    add("manifest","manifest.webmanifest"); add("apple-touch-icon","icons/apple-touch-icon.png");
+    add("manifest","manifest.webmanifest"); add("apple-touch-icon","apple-touch-icon.png");
     if("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(()=>{});
   }
   const qs=new URLSearchParams(location.search);
