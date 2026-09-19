@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#3F8F87">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Гармония IT">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <title>Гармония IT</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -714,6 +714,16 @@ button.spec-card{cursor:pointer}
 .ahist time{font-size:12.5px;color:var(--faint);white-space:nowrap}
 @media (max-width:640px){.ana-quick{gap:8px}.aq{padding:12px 4px;font-size:12px}.aq i{font-size:24px}.moods button{font-size:24px}.spec-card{padding:12px}.av{width:44px;height:44px;font-size:15px}}
 
+/* no zoom: disable double-tap zoom, keep inputs >=16px so iOS doesn't auto-zoom */
+html,body{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+input,textarea,select{font-size:16px!important}
+.spec-list{max-height:none}
+.sp-links a{white-space:normal!important;overflow-wrap:anywhere;word-break:break-word}
+.spec-card,.spec-list,.sp-info{min-width:0;max-width:100%}
+body{overflow-x:clip}
+
+.sp-links a,.sp-links span{white-space:normal!important;overflow-wrap:normal!important;word-break:normal!important;font-size:13.5px;font-weight:600;color:var(--accent)}
+
 :root{color-scheme:light}
 </style>
 </head>
@@ -960,7 +970,9 @@ button.spec-card{cursor:pointer}
 /* ================= constants ================= */
 const ENGINEER_EMAIL = "iatumanov@yanao.ru";
 const SPECIALISTS = [
-  {id:"tumanov",name:"Туманов Илья Александрович",role:"Инженер-программист",phone:"89963324414",email:"iatumanov@yanao.ru",branches:"all"}
+  {id:"tumanov",name:"Туманов Илья Александрович",role:"Инженер-программист",phone:"89963324414",email:"iatumanov@yanao.ru",branches:"all"},
+  {id:"dmitriev",name:"Дмитриев Евгений Алексеевич",role:"Инженер-программист",phone:"",email:"eadmitriev@muravlenko.yanao.ru",branches:"all"},
+  {id:"kalinin",name:"Калинин Александр",role:"Инженер-программист",phone:"",email:"askalinin@yanao.ru",branches:"all"}
 ];
 const specOf = id => SPECIALISTS.find(x=>x.id===id)||SPECIALISTS[0];
 const phoneFmt = p => String(p).replace(/^8?(\d{3})(\d{3})(\d{2})(\d{2})$/,"8 $1 $2-$3-$4");
@@ -1244,7 +1256,8 @@ function specCard(sp,{select=false,on=false}={}){
   return `<${select?`button type="button" data-spec="${sp.id}" aria-pressed="${on}"`:"div"} class="spec-card">
     <span class="av">${esc(initials(sp.name))}</span>
     <span class="sp-info"><b>${esc(sp.name)}</b><small>${esc(sp.role)}</small>
-      <span class="sp-links"><a href="tel:${phoneTel(sp.phone)}">📞 ${phoneFmt(sp.phone)}</a><a href="mailto:${sp.email}">✉️ ${sp.email}</a></span></span>
+      <span class="sp-links">${(()=>{const T=select?"span":"a";const em=esc(sp.email).replace("@","@<wbr>");
+        return (sp.phone?`<${T} ${select?"":`href="tel:${phoneTel(sp.phone)}"`}>📞 ${phoneFmt(sp.phone)}</${T}>`:"")+`<${T} ${select?"":`href="mailto:${sp.email}"`}>✉️ ${em}</${T}>`})()}</span></span>
     ${select?`<span class="sp-check">${CHECK}</span>`:""}</${select?"button":"div"}>`;
 }
 function renderSpecs(){
@@ -1662,7 +1675,8 @@ function renderDrawer(){
       <dt>Почта</dt><dd>${r.email?`<a href="mailto:${esc(r.email)}">${esc(r.email)}</a>`:"не указана"}</dd>
       <dt>Кабинет</dt><dd>${esc(r.room||"не указан")}</dd>
       <dt>ПК</dt><dd>${esc(r.pc||"не указан")}</dd>
-      <dt>Время</dt><dd>${esc(r.when)}</dd></dl></div>`;
+      <dt>Время</dt><dd>${esc(r.when)}</dd>
+      <dt>Исполнитель</dt><dd>${esc(specOf(r.spec).name)}</dd></dl></div>`;
     const rel=related(r).sort((a,b)=>b.createdAt-a.createdAt);
     if(rel.length){
       const same=rel.filter(x=>x.cat===r.cat).length;
@@ -1918,6 +1932,10 @@ $("#anaPanel").addEventListener("click",e=>{
   const btn=e.target; btn.disabled=true;
   anaSendMail(subject,body,k,title,()=>{btn.disabled=false;$("#anaPanel").innerHTML=`<div class="ana-done"><div>💛</div><b>${k==="treats"?"Заказ принят!":k==="coffee"?"Приглашение отправлено!":"Уже бегу!"}</b><p>${esc(nextLove())}</p></div>`;burst()});
 });
+
+/* ================= no zoom ================= */
+["gesturestart","gesturechange","gestureend"].forEach(ev=>document.addEventListener(ev,e=>e.preventDefault(),{passive:false}));
+document.addEventListener("touchmove",e=>{if(e.touches&&e.touches.length>1)e.preventDefault()},{passive:false});
 
 /* ================= boot ================= */
 renderPhotos(); renderSpecs(); sync(); goStep(1,1);
